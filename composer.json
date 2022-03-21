@@ -1,7 +1,7 @@
 {
     "name": "fastbolt/test-helpers",
     "type": "library",
-    "description": "Some test helpers used in Fastbolt unitt ests",
+    "description": "Some test helpers used in Fastbolt unit tests",
     "keywords": [
         "fastbolt",
         "phpunit",
