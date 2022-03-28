@@ -53,12 +53,14 @@ class BaseTestCase extends TestCase
                        }
                    );
 
-        $mockObject->method('count')
-                   ->willReturnCallback(
-                       function () use ($internalData) {
-                           return sizeof($internalData->array);
-                       }
-                   );
+        if ($mockObject instanceof Countable) {
+            $mockObject->method('count')
+                       ->willReturnCallback(
+                           function () use ($internalData) {
+                               return sizeof($internalData->array);
+                           }
+                       );
+        }
 
         return $mockObject;
     }
