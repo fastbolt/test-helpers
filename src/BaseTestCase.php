@@ -86,10 +86,18 @@ class BaseTestCase extends TestCase
      * @return MockObject
      * @psalm-return MockObject&MockedType
      */
-    protected function getMock(string $className, array $onlyMethods = [], array $addMethods = []): MockObject
-    {
+    protected function getMock(
+        string $className,
+        array $onlyMethods = [],
+        array $addMethods = [],
+        ?string $mockClassName = null
+    ): MockObject {
         $builder = $this->getMockBuilder($className)
                         ->disableOriginalConstructor();
+        if ($mockClassName) {
+            $builder->setMockClassName($mockClassName);
+        }
+
         if ($onlyMethods) {
             $builder->onlyMethods($onlyMethods);
         }
