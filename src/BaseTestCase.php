@@ -8,6 +8,22 @@ use stdClass;
 
 class BaseTestCase extends TestCase
 {
+    public static function assertSameIgnoringDuplicateWhitespaces(string $expected, string $actual): void
+    {
+        self::assertSame(
+            preg_replace('/\s{2,}/', ' ', preg_replace('/[\r\n\t]/', ' ', $expected)),
+            preg_replace('/\s{2,}/', ' ', preg_replace('/[\r\n\t]/', '', $actual))
+        );
+    }
+
+    public static function assertSameIgnoringWhitespaces(string $expected, string $actual): void
+    {
+        self::assertSame(
+            preg_replace('/\s+/', '', $expected),
+            preg_replace('/\s+/', '', $actual)
+        );
+    }
+
     /**
      * Helper method to mock iterator object.
      * Modified code taken from {@see https://stackoverflow.com/a/15907250/309163}
